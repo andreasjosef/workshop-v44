@@ -203,4 +203,4 @@ git switch steg-3-load                    # hoppa till ett steg
 | `steg-3-load` | `load()` och klick på knappen |
 | `steg-4-knapp` | `setButtonState`, `try/catch` och CSS-övning 1–2 |
 | `steg-5-filter` | Filter på kategori |
-| `losning` | Allt, med extrauppgifterna |
+| `solution` | Allt, med extrauppgifterna |
