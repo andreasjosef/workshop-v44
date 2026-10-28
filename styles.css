@@ -130,7 +130,15 @@ body {
    klickar på den (:active). Glöm inte att ta med transform i transitionen.
    ========================================================================== */
 
-/* Din kod här */
+.load-button {
+  transition:
+    background-color 200ms ease,
+    transform 100ms ease;
+}
+
+.load-button:active:not(:disabled) {
+  transform: scale(0.96);
+}
 
 /* ==========================================================================
    CSS-ÖVNING 2 (steg 4) – snurra ikonen medan vi laddar
@@ -141,7 +149,15 @@ body {
       som använder spin, varvet runt på ca 700 ms, linear, infinite.
    ========================================================================== */
 
-/* Din kod här */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.load-button[data-state="loading"] .load-button__icon {
+  animation: spin 700ms linear infinite;
+}
 
 /* ---------- Filters ---------- */
 

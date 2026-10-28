@@ -31,13 +31,34 @@ function render() {
   el.status.textContent = `Visar ${state.events.length} evenemang.`;
 }
 
-// Fetches the events, saves them in state, and lets render() draw them.
-async function load() {
-  state.events = await fetchEvents(source, latency);
-  render();
+const BUTTON_LABEL = {
+  idle: "Ladda evenemang",
+  loading: "Laddar…",
+  success: "Klart!",
+  error: "Försök igen",
+};
+
+// JS only says which state the button is in. styles.css decides how it looks.
+function setButtonState(buttonState) {
+  el.loadButton.dataset.state = buttonState;
+  el.loadLabel.textContent = BUTTON_LABEL[buttonState];
+  el.loadButton.disabled = buttonState === "loading";
 }
 
-// TODO steg 4: setButtonState(buttonState)
+// Fetches the events, saves them in state, and lets render() draw them.
+async function load() {
+  setButtonState("loading");
+
+  try {
+    state.events = await fetchEvents(source, latency);
+    render();
+    setButtonState("success");
+  } catch (error) {
+    setButtonState("error");
+    el.status.textContent = `Kunde inte ladda evenemang (${error.message}).`;
+  }
+}
+
 // TODO steg 5: readFilters() and matchesFilters(event, filters)
 
 // ---------- 4. Wiring – listen for what the user wants, call an action ----------
