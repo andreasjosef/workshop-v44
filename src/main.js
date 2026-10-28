@@ -19,12 +19,8 @@ const el = {
 
 // ---------- 2. state – everything the app knows right now ----------
 
-// Two events copied in by hand for now. In step 3 they come from load().
 const state = {
-  events: [
-    { id: 3, title: "Jazzkväll med husbandet", category: "Musik", day: "Mån 2 nov", time: "20:00", place: "Fasching", price: 180, soldOut: false },
-    { id: 10, title: "Indiepop-kväll", category: "Musik", day: "Ons 4 nov", time: "19:30", place: "Nalen", price: 250, soldOut: true },
-  ],
+  events: [],
 };
 
 // ---------- 3. Actions – the only functions that change things ----------
@@ -35,13 +31,16 @@ function render() {
   el.status.textContent = `Visar ${state.events.length} evenemang.`;
 }
 
-// TODO steg 3: async load()
+// Fetches the events, saves them in state, and lets render() draw them.
+async function load() {
+  state.events = await fetchEvents(source, latency);
+  render();
+}
+
 // TODO steg 4: setButtonState(buttonState)
 // TODO steg 5: readFilters() and matchesFilters(event, filters)
 
 // ---------- 4. Wiring – listen for what the user wants, call an action ----------
 
-// TODO steg 3: click on the load button → load
+el.loadButton.addEventListener("click", load);
 // TODO steg 5: change in the filter form → render
-
-render();
