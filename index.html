@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Händer i veckan</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <div>
+          <h1 class="app__title">Händer i veckan</h1>
+          <p class="app__subtitle">Evenemang i Stockholm, vecka 45 (2–8 nov)</p>
+        </div>
+        <button class="load-button" id="load-button" type="button" data-state="idle">
+          <span class="load-button__icon" aria-hidden="true"></span>
+          <span class="load-button__label">Ladda evenemang</span>
+        </button>
+      </header>
+
+      <form class="filters" id="filters" aria-label="Filtrera evenemang">
+        <fieldset class="filters__categories">
+          <legend class="visually-hidden">Kategori</legend>
+          <label><input type="radio" name="category" value="Alla" checked /> Alla</label>
+          <label><input type="radio" name="category" value="Musik" /> Musik</label>
+          <label><input type="radio" name="category" value="Mat" /> Mat</label>
+          <label><input type="radio" name="category" value="Sport" /> Sport</label>
+          <label><input type="radio" name="category" value="Kultur" /> Kultur</label>
+        </fieldset>
+        <!-- Extra 1 -->
+        <label class="filters__toggle"><input type="checkbox" name="hideSoldOut" /> Dölj fullbokade</label>
+      </form>
+
+      <p class="status" id="status" role="status" aria-live="polite">Tryck på knappen för att ladda veckans evenemang.</p>
+
+      <ul class="events" id="events" aria-label="Evenemang"></ul>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

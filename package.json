@@ -1,0 +1,9 @@
+{
+  "name": "workshop-v44",
+  "private": true,
+  "type": "module",
+  "description": "Händer i veckan – a small events list for practising app structure, rendering lists and button states",
+  "scripts": {
+    "start": "npx --yes serve ."
+  }
+}

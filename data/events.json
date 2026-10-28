@@ -1,0 +1,16 @@
+{
+  "events": [
+    { "id": 1, "title": "Jazzkväll med husbandet", "category": "Musik", "day": "Mån 2 nov", "time": "20:00", "place": "Fasching", "price": 180, "soldOut": false },
+    { "id": 2, "title": "Smaka på hösten – matmarknad", "category": "Mat", "day": "Tis 3 nov", "time": "11:00", "place": "Hötorgshallen", "price": 0, "soldOut": false },
+    { "id": 3, "title": "Löpargrupp runt Djurgården", "category": "Sport", "day": "Tis 3 nov", "time": "18:00", "place": "Djurgårdsbron", "price": 0, "soldOut": false },
+    { "id": 4, "title": "Utställning: Ljus och skugga", "category": "Kultur", "day": "Ons 4 nov", "time": "12:00", "place": "Fotografiska", "price": 195, "soldOut": false },
+    { "id": 5, "title": "Indiepop-kväll", "category": "Musik", "day": "Ons 4 nov", "time": "19:30", "place": "Nalen", "price": 250, "soldOut": true },
+    { "id": 6, "title": "Ramen från grunden", "category": "Mat", "day": "Tor 5 nov", "time": "18:00", "place": "Kulturhuset", "price": 450, "soldOut": true },
+    { "id": 7, "title": "Innebandy: Stockholmsderby", "category": "Sport", "day": "Tor 5 nov", "time": "19:00", "place": "Eriksdalshallen", "price": 120, "soldOut": false },
+    { "id": 8, "title": "Poesiafton med öppen scen", "category": "Kultur", "day": "Fre 6 nov", "time": "19:00", "place": "Stadsbiblioteket", "price": 0, "soldOut": false },
+    { "id": 9, "title": "Klubbkväll: 90-tal hela natten", "category": "Musik", "day": "Fre 6 nov", "time": "22:00", "place": "Södra Teatern", "price": 200, "soldOut": false },
+    { "id": 10, "title": "Surdegskurs för nybörjare", "category": "Mat", "day": "Lör 7 nov", "time": "10:00", "place": "Bageriet i Vasastan", "price": 350, "soldOut": false },
+    { "id": 11, "title": "Prova på klättring", "category": "Sport", "day": "Lör 7 nov", "time": "13:00", "place": "Klättercentret Telefonplan", "price": 250, "soldOut": true },
+    { "id": 12, "title": "Filmklubb: svenska klassiker", "category": "Kultur", "day": "Sön 8 nov", "time": "17:00", "place": "Zita Folkets Bio", "price": 120, "soldOut": false }
+  ]
+}

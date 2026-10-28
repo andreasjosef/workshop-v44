@@ -1,0 +1,347 @@
+/* Händer i veckan – all layout and colours are done.
+   Look for "CSS-ÖVNING" further down: those are the parts you write yourself. */
+
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --text: #1d1b18;
+  --muted: #6b665e;
+  --border: #e4e0d8;
+  --accent: #3b5bdb;
+  --on-accent: #ffffff;
+  --success: #2f9e44;
+  --error: #e03131;
+  --radius: 12px;
+
+  --cat-musik: #ae3ec9;
+  --cat-mat: #e8590c;
+  --cat-sport: #1971c2;
+  --cat-kultur: #2b8a3e;
+
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Layout ---------- */
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+}
+
+.app__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.app__title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.app__subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+/* ---------- The load button – one look per data-state ---------- */
+/* JS sets data-state="idle | loading | success | error". CSS only draws it. */
+
+.load-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.load-button:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+}
+
+.load-button:disabled {
+  cursor: progress;
+}
+
+/* A ring with one side missing – it only looks like a spinner once it spins. */
+.load-button__icon {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+}
+
+.load-button[data-state="loading"] {
+  background: var(--muted);
+}
+
+.load-button[data-state="loading"] .load-button__icon {
+  display: inline-block;
+}
+
+.load-button[data-state="success"] {
+  background: var(--success);
+}
+
+.load-button[data-state="error"] {
+  background: var(--error);
+}
+
+/* ==========================================================================
+   CSS-ÖVNING 1 (steg 4) – mjuk övergång mellan lägena
+   --------------------------------------------------------------------------
+   Just nu hoppar knappens färg direkt när data-state ändras.
+   Lägg till en transition på .load-button så att bakgrundsfärgen glider
+   över på ungefär 200 ms.
+   Bonus: få knappen att tryckas in lite (transform: scale(...)) när man
+   klickar på den (:active). Glöm inte att ta med transform i transitionen.
+   ========================================================================== */
+
+/* Din kod här */
+
+/* ==========================================================================
+   CSS-ÖVNING 2 (steg 4) – snurra ikonen medan vi laddar
+   --------------------------------------------------------------------------
+   Ikonen syns redan i läget "loading", men den står still.
+   1. Skriv en @keyframes som heter spin och roterar till 360deg.
+   2. Ge .load-button[data-state="loading"] .load-button__icon en animation
+      som använder spin, varvet runt på ca 700 ms, linear, infinite.
+   ========================================================================== */
+
+/* Din kod här */
+
+/* ---------- Filters ---------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.filters__categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.filters__categories label {
+  position: relative;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+/* The radio button itself is invisible but still clickable and focusable. */
+.filters__categories input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.filters__categories label:has(input:checked) {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg);
+}
+
+.filters__categories label:has(input:focus-visible) {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.filters__toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* ---------- Status line ---------- */
+
+.status {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+/* ---------- The list of events ---------- */
+
+.events {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.event {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--cat, var(--muted));
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* data-category on the <li> picks the colour. */
+.event[data-category="Musik"] {
+  --cat: var(--cat-musik);
+}
+.event[data-category="Mat"] {
+  --cat: var(--cat-mat);
+}
+.event[data-category="Sport"] {
+  --cat: var(--cat-sport);
+}
+.event[data-category="Kultur"] {
+  --cat: var(--cat-kultur);
+}
+
+.event__date {
+  display: flex;
+  flex-direction: column;
+}
+
+.event__day {
+  font-weight: 700;
+}
+
+.event__time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.event__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.event__place {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.event__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+
+.event__category {
+  color: var(--cat);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.event__price {
+  font-weight: 600;
+}
+
+/* data-sold-out="true" greys the event out. */
+.event[data-sold-out="true"] {
+  opacity: 0.6;
+}
+
+.event[data-sold-out="true"] .event__price {
+  color: var(--error);
+}
+
+.events__empty {
+  padding: 24px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .event {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .event__meta {
+    grid-column: 2;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* ==========================================================================
+   CSS-ÖVNING 3 (extra) – nya evenemang glider in
+   --------------------------------------------------------------------------
+   Varje <li class="event"> har style="--i: 0", "--i: 1", ... (sin plats i listan).
+   1. Skriv en @keyframes event-in som börjar med opacity: 0 och
+      transform: translateY(8px). (Du behöver bara skriva "from".)
+   2. Ge .event animationen, ca 300 ms, ease-out, och fill-mode backwards.
+   3. Låt varje rad vänta lite längre än den förra:
+      animation-delay: calc(var(--i) * 40ms);
+   Fråga: varför animerar alla rader igen när du byter filter?
+   ========================================================================== */
+
+/* Din kod här */
+
+/* ---------- Respect people who have turned animations off ---------- */
+/* This one is done. It makes all your animations above almost instant
+   for anyone with "reduce motion" switched on in their system settings. */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
