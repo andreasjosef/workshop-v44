@@ -2,7 +2,7 @@
 
 Workshop v44. En liten app som visar veckans evenemang i Stockholm. Du laddar dem med en knapp, de ritas upp som en lista, och du kan filtrera på kategori.
 
-Det är en lillasyster till SL-tavlan. Koden har **samma ordning**, men den är så liten att du hinner bygga allt själv på en eftermiddag (3–4 timmar).
+Koden har **samma ordning** som SL-tavlan, men appen är så liten att du hinner bygga allt själv på en förmiddag (3–4 timmar).
 
 ## Målet
 
