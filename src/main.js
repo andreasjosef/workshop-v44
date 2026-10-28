@@ -29,13 +29,15 @@ const state = {
 function readFilters() {
   return {
     category: el.filters.querySelector('input[name="category"]:checked').value,
+    hideSoldOut: el.filters.querySelector('input[name="hideSoldOut"]').checked,
   };
 }
 
 // true if the event should be shown.
 function matchesFilters(event, filters) {
-  if (filters.category === "Alla") return true;
-  return event.category === filters.category;
+  if (filters.category !== "Alla" && event.category !== filters.category) return false;
+  if (filters.hideSoldOut && event.soldOut) return false;
+  return true;
 }
 
 // Draws whatever is in state right now. The filter only changes what we show, never state.
@@ -54,11 +56,20 @@ const BUTTON_LABEL = {
   error: "Försök igen",
 };
 
+let resetTimer;
+
 // JS only says which state the button is in. styles.css decides how it looks.
 function setButtonState(buttonState) {
   el.loadButton.dataset.state = buttonState;
   el.loadLabel.textContent = BUTTON_LABEL[buttonState];
   el.loadButton.disabled = buttonState === "loading";
+
+  // "Klart!" is a moment, not a place to stay: back to idle after 1.5 s.
+  // clearTimeout stops an older timer from resetting the button in the middle of a new load.
+  clearTimeout(resetTimer);
+  if (buttonState === "success") {
+    resetTimer = setTimeout(() => setButtonState("idle"), 1500);
+  }
 }
 
 // Fetches the events, saves them in state, and lets render() draw them.
@@ -71,7 +82,13 @@ async function load() {
     setButtonState("success");
   } catch (error) {
     setButtonState("error");
-    el.status.textContent = `Kunde inte ladda evenemang (${error.message}).`;
+
+    // Be honest: if the old list is still on screen, say so.
+    if (state.events.length > 0) {
+      el.status.textContent = `Kunde inte uppdatera (${error.message}). Visar de evenemang du redan hade.`;
+    } else {
+      el.status.textContent = `Kunde inte ladda evenemang (${error.message}).`;
+    }
   }
 }
 

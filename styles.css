@@ -346,7 +346,19 @@ body {
    Fråga: varför animerar alla rader igen när du byter filter?
    ========================================================================== */
 
-/* Din kod här */
+/* Answer: render() replaces innerHTML, so every <li> is a brand new element. */
+
+@keyframes event-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.event {
+  animation: event-in 300ms ease-out backwards;
+  animation-delay: calc(var(--i) * 40ms);
+}
 
 /* ---------- Respect people who have turned animations off ---------- */
 /* This one is done. It makes all your animations above almost instant
