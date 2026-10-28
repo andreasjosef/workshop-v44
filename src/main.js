@@ -25,10 +25,26 @@ const state = {
 
 // ---------- 3. Actions – the only functions that change things ----------
 
-// Draws whatever is in state right now.
+// What the user has picked in the form right now.
+function readFilters() {
+  return {
+    category: el.filters.querySelector('input[name="category"]:checked').value,
+  };
+}
+
+// true if the event should be shown.
+function matchesFilters(event, filters) {
+  if (filters.category === "Alla") return true;
+  return event.category === filters.category;
+}
+
+// Draws whatever is in state right now. The filter only changes what we show, never state.
 function render() {
-  renderEvents(el.events, state.events);
-  el.status.textContent = `Visar ${state.events.length} evenemang.`;
+  const filters = readFilters();
+  const visible = state.events.filter((event) => matchesFilters(event, filters));
+
+  renderEvents(el.events, visible);
+  el.status.textContent = `Visar ${visible.length} av ${state.events.length} evenemang.`;
 }
 
 const BUTTON_LABEL = {
@@ -59,9 +75,8 @@ async function load() {
   }
 }
 
-// TODO steg 5: readFilters() and matchesFilters(event, filters)
-
 // ---------- 4. Wiring – listen for what the user wants, call an action ----------
 
 el.loadButton.addEventListener("click", load);
-// TODO steg 5: change in the filter form → render
+// A new filter needs no new data – just draw again.
+el.filters.addEventListener("change", render);
