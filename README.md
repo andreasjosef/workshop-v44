@@ -132,7 +132,7 @@ Gör stegen i ordning. Varje steg slutar med något du kan **se** i webbläsaren
 3. Skriv `async function load()`: hämta med `fetchEvents(source, latency)`, spara i `state.events`, anropa `render()`.
 4. Under **Wiring**: koppla knappens `click` till `load`.
 
-**Testa:** klicka. Efter en kort stund kommer alla 12 evenemang.
+**Testa:** klicka. Efter en kort stund kommer alla 24 evenemang.
 
 **Varför?** `load` hämtar och sparar. `render` ritar det som finns i `state`. De gör var sin sak, och det är därför vi kan återanvända `render` i steg 5.
 
@@ -169,7 +169,7 @@ Gör stegen i ordning. Varje steg slutar med något du kan **se** i webbläsaren
    el.filters.querySelector('input[name="category"]:checked').value
    ```
 2. Skriv `matchesFilters(event, filters)` som lämnar tillbaka `true` om evenemanget ska synas. `"Alla"` ska visa allt.
-3. I `render()`: `filter` först och rita sedan bara de som syns. Skriv `Visar 4 av 12 evenemang.` i statusraden.
+3. I `render()`: `filter` först och rita sedan bara de som syns. Skriv `Visar 6 av 24 evenemang.` i statusraden.
 4. Under **Wiring**: lyssna på `change` på `el.filters` och anropa `render`.
 
 **Testa:** byt kategori. Hämtas datan igen (titta i Network-fliken)? Det ska den inte.
