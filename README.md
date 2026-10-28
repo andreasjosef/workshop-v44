@@ -15,8 +15,6 @@ Du ska gå härifrån med en struktur du kan använda i nästan alla små JavaSc
 
 På vägen övar du på att göra om en lista med data till HTML med `map`, och på en knapp som har olika **lägen** (vilar, laddar, klart, fel). JavaScript bestämmer *vilket läge* knappen är i, och CSS bestämmer *hur läget ser ut*.
 
-**Du ska kunna förklara varje rad.** Använd gärna AI, men om du inte kan säga varför en rad står där är den inte din än.
-
 ## Kom igång
 
 ```bash
