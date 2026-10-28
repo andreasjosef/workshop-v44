@@ -17,18 +17,24 @@ const el = {
   events: document.querySelector("#events"),
 };
 
-// Is anything null? Then that selector doesn't match the HTML.
-console.log(el);
-
 // ---------- 2. state – everything the app knows right now ----------
 
+// Two events copied in by hand for now. In step 3 they come from load().
 const state = {
-  events: [],
+  events: [
+    { id: 3, title: "Jazzkväll med husbandet", category: "Musik", day: "Mån 2 nov", time: "20:00", place: "Fasching", price: 180, soldOut: false },
+    { id: 10, title: "Indiepop-kväll", category: "Musik", day: "Ons 4 nov", time: "19:30", place: "Nalen", price: 250, soldOut: true },
+  ],
 };
 
 // ---------- 3. Actions – the only functions that change things ----------
 
-// TODO steg 2: render()
+// Draws whatever is in state right now.
+function render() {
+  renderEvents(el.events, state.events);
+  el.status.textContent = `Visar ${state.events.length} evenemang.`;
+}
+
 // TODO steg 3: async load()
 // TODO steg 4: setButtonState(buttonState)
 // TODO steg 5: readFilters() and matchesFilters(event, filters)
@@ -37,3 +43,5 @@ const state = {
 
 // TODO steg 3: click on the load button → load
 // TODO steg 5: change in the filter form → render
+
+render();
