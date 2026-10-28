@@ -9,9 +9,16 @@ const latency = Number(params.get("latency") || 800);
 
 // ---------- 1. el – every part of the page we update ----------
 
-// TODO steg 1: fill in el with document.querySelector(...)
-// loadButton, loadLabel, filters, status, events
-const el = {};
+const el = {
+  loadButton: document.querySelector("#load-button"),
+  loadLabel: document.querySelector(".load-button__label"),
+  filters: document.querySelector("#filters"),
+  status: document.querySelector("#status"),
+  events: document.querySelector("#events"),
+};
+
+// Is anything null? Then that selector doesn't match the HTML.
+console.log(el);
 
 // ---------- 2. state – everything the app knows right now ----------
 
